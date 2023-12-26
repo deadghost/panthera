@@ -16,6 +16,22 @@ This is alpha, things will change fast, will break and the API is neither comple
 
 [![Clojars Project](https://img.shields.io/clojars/v/panthera.svg)](https://clojars.org/panthera)
 
+## Prerequisites
+
+- python 3.6
+- pip3
+- numpy, pandas, scipy
+
+### With Conda
+
+```
+$ conda create -n panthera python=3.6
+$ conda activate panthera
+$ pip3 install numpy pandas scipy
+```
+
+Finally, to make sure it works, run tests: `$ lein test`.
+
 ## Get started
 
 **Panthera** uses the great [libpython-clj](https://github.com/cnuernber/libpython-clj) as a backend to access Python and get [pandas](https://github.com/pandas-dev/pandas) and [numpy](https://github.com/numpy/numpy) functionality.
