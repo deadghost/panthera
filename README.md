@@ -25,9 +25,8 @@ This is alpha, things will change fast, will break and the API is neither comple
 ### With Conda
 
 ```
-$ conda create -n panthera python=3.6
+$ conda create -n panthera python=3.6 numpy pandas scipy
 $ conda activate panthera
-$ pip3 install numpy pandas scipy
 ```
 
 Finally, to make sure it works, run tests: `$ lein test`.
