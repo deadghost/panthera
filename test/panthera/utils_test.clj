@@ -2,10 +2,22 @@
   (:require
    [clojure.test :refer :all]
    [panthera.config :refer [start-python!]]
-    [libpython-clj.python :as py]
+    [libpython-clj2.python :as py]
     [panthera.pandas.utils :as u]))
 
 (use-fixtures :once start-python!)
+
+(deftest cache-accessor
+  (testing "Results are atoms containing a few strings."
+    (are [acc]
+        (let [result (u/cache-accessor acc)]
+          (and (instance? clojure.lang.Atom result)
+               (> (count @result) 5)
+               (every? string? @result)))
+      :str
+      :dt
+      :cat
+      :sparse)))
 
 (deftest pytype
   (are [t d]
@@ -20,7 +32,8 @@
     :tuple (py/->py-tuple [[1 2] [3 4]])
     :dict (py/->py-dict {})
     :dict (py/->py-dict {:a 1 :b "2" :c [1 2 3]})
-    :dict (py/->py-dict {"a" 1})))
+    :dict (py/->py-dict {"a" 1})
+    nil :kw))
 
 (deftest slice
   (are [d]
@@ -70,3 +83,8 @@
   (is (= (u/->clj
            (py/call-attr-kw u/pd "Series" [[1 2 3]] {"name" "test"}))
          [{:test 1} {:test 2} {:test 3}])))
+
+(deftest simple-kw-call
+  (let [result (u/simple-kw-call u/pd "Interval" {:left 0.994 :right 3.0})]
+    (testing "Result is a pyobject."
+      (is (= :pyobject (type result))))))

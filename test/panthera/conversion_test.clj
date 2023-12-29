@@ -1,7 +1,7 @@
 (ns panthera.conversion-test
   (:require
    [clojure.test :refer :all]
-   [libpython-clj.python :as py]
+   [libpython-clj2.python :as py]
    [panthera.pandas.utils :as u]
    [panthera.pandas.generics :as g]
    [panthera.pandas.conversion :as c]))
@@ -44,7 +44,7 @@
          o)
 
     {:start "1 hours" :end "2 days"}
-    ["0 days 01:00:00" "1 days 01:00:00" "2 days 01:00:00"]
+    ["0 days 01:00:00" "1 days 01:00:00"]
 
     {:start "1 hours" :end "4 hours" :freq "H"}
     ["0 days 01:00:00" "0 days 02:00:00" "0 days 03:00:00" "0 days 04:00:00"]))

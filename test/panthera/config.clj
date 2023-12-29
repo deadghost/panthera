@@ -1,6 +1,6 @@
 (ns panthera.config
   (:require
-   [libpython-clj.python :as py]))
+   [libpython-clj2.python :as py]))
 
 (defn start-python!
   [f]

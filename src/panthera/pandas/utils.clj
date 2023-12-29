@@ -1,7 +1,7 @@
 (ns panthera.pandas.utils
   (:require
-   [libpython-clj.python :as py]
-   [libpython-clj.require :refer [require-python]]
+   [libpython-clj2.python :as py]
+   [libpython-clj2.require :refer [require-python]]
    [camel-snake-kebab.extras :as cske]
    [clojure.core.memoize :as m]))
 
@@ -13,8 +13,7 @@
   [acc]
   (let [mets (-> (py/get-attr pd :Series)
                  (py/get-attr acc)
-                 py/att-type-map
-                 keys)
+                 (py/dir))
         fltr (into [] (filter (complement #(re-find #"^_+" %))) mets)]
     (atom (set fltr))))
 
@@ -69,7 +68,8 @@
   ```"
   ([] nil)
   ([obj]
-   (py/python-type obj))
+   (when (= (type obj) :pyobject)
+     (py/python-type obj)))
   ([obj & objs]
    (map pytype (concat (vector obj) objs))))
 

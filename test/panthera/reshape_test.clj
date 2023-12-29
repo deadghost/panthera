@@ -3,8 +3,8 @@
    :exclude [drop])
   (:require
    [clojure.test :refer :all]
-   [libpython-clj.python :as py]
-   [libpython-clj.require :refer [require-python]]
+   [libpython-clj2.python :as py]
+   [libpython-clj2.require :refer [require-python]]
    [panthera.pandas.utils :as u :reload true]
    [panthera.pandas.generics :as g]
    [panthera.pandas.reshape :as r :reload true]

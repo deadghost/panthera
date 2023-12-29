@@ -1,7 +1,7 @@
 (ns panthera.generics-test
   (:require
     [clojure.test :refer :all]
-    [libpython-clj.python :as py]
+    [libpython-clj2.python :as py]
     [panthera.pandas.generics :as g :reload true]
     [panthera.pandas.utils :as u :reload true]
     [panthera.pandas.math :as m]))
